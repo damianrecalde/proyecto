@@ -1,0 +1,91 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">{{ titulo }}</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a class="breadcrumb-item text-warning" href="{% url 'home:home' %}">{{ pantalla_principal }}</a></li>
+            <li class="breadcrumb-item active">{{ titulo }}</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-6">
+              <h3 class="card-title">{{ titulo_tabla }}</h3>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end align-items-center">
+              <a href="{% url 'cliente:cliente_create' %}" class="btn btn-success">{{ btn_crear }}</a>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table id="example1" class="table table-bordered table-dark table-striped">
+            <thead>
+            <tr>
+              <th>Nombre y Apellido</th>
+              <th>Empresa</th>
+              <th>Tipo de cliente</th>
+              <th>Documento</th>
+              <th>Email</th>
+              <th>Producto</th>
+              <th>Modo</th>
+              <th>Ip</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+             {% for c in object_list %}
+            <tr>
+              <td>{{ c.nombre }} {{ c.apellido }}</td>
+              <td>{{ c.empresa }}</td>
+              <td>{{ c.tipo_cliente }}</td>
+              <td>{{ c.documento_nro }}</td>
+              <td>{{ c.email }}</td>
+              <td>{{ c.producto }}</td>
+              <td>{{ c.modo }}</td>
+              <td>{{ c.ip }}</td>
+              <td>
+              {% if e.activo == True %}
+                Activo
+              {% else %}
+                Inactivo
+              {% endif %}
+              </td>
+              <td class="d-flex justify-content-center align-items-center">
+               <a href="#"><i class="fa-regular fa-pen-to-square text-success mr-3"></i></a>
+               <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
+              </td>
+            </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+    </div><!--/. container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+{% endblock content %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

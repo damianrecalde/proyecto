@@ -1,0 +1,81 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">{{ titulo }}</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a class="breadcrumb-item text-warning" href="{% url 'home:home' %}">{{ pantalla_principal }}</a></li>
+            <li class="breadcrumb-item active">{{ titulo }}</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-6">
+              <h3 class="card-title">{{ titulo_tabla }}</h3>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end align-items-center">
+              <a href="{% url 'antena:producto_create' %}" class="btn btn-success">{{ btn_crear }}</a>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table id="example1" class="table table-bordered table-dark table-striped">
+            <thead>
+            <tr>
+              <th>Marca</th>
+              <th>Modelo</th>
+              <th>Modo</th>
+              <th>Localidad</th>
+              <th>Barrio</th>
+              <th>Calle</th>
+              <th>Calle Nº</th>
+              <th>Latitud</th>
+              <th>Longitud</th>
+            </tr>
+            </thead>
+            <tbody>
+             {% for a in object_list %}
+            <tr>
+              <td>{{ a.marca }}</td>
+              <td>{{ a.modelo }}</td>
+              <td>{{ a.producto }}</td>
+              <td>{{ a.localidad }}</td>
+              <td>{{ a.latitud }}</td>
+              <td>{{ a.longitud }}</td>
+              <td class="d-flex justify-content-center align-items-center">
+               <a href="#"><i class="fa-regular fa-pen-to-square text-success mr-3"></i></a>
+               <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
+              </td>
+            </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+    </div><!--/. container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+{% endblock content %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

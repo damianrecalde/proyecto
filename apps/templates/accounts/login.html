@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>INFORMATICASIMPLE.NET</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+
+  {% comment %} Font Awesome CDN {% endcomment %}
+  <script src="https://use.fontawesome.com/65f036b25d.js"></script>
+
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="{% static 'index2.html' %}" class="h3"><b>INFORMATICASIMPLE.NET</b></a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Ingrese con sus credenciales</p>
+    
+      <form action="" method="post">
+
+        {% csrf_token %}
+
+        <div class="input-group mb-3">
+          {{ form.username }}
+          {% comment %} <input type="text" class="form-control" placeholder="Email"> {% endcomment %}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+          
+        </div>
+        <div class="input-group mb-3">
+        
+          {% comment %} <input type="password" class="form-control" placeholder="Password"> {% endcomment %}
+          {{ form.password }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+          
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-12">
+            <button type="submit" class="btn btn-block btn-success" name='login'>Iniciar sesión<i class="fa fa-sign-in ml-2" aria-hidden="true"></i>
+            </button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+      <div class="row m-0 mt-2">
+        <div class="col-md-6">
+          <a href="forgot-password.html" alt="Recuperar el usuario o el password" class="nav-link m-0">Olvidé mi clave</a>
+        </div>
+        <div class="col-md-6">
+          <a href="register.html" class="text-center nav-link" alt="Formulario para crear el usuario">Crear usuario</a>
+        </div>
+      </div>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+
+</body>
+</html>

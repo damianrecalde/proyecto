@@ -1,0 +1,146 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+<!-- Sweetify -->
+{% load sweetify %}
+<!-- static nonce -->
+{% sweetify nonce="XYZ" %}
+<!-- from request -->
+{% sweetify nonce=request.csp_nonce %}
+<!-- Fin Sweetify -->
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ titulo }}</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a class="breadcrumb-item text-warning" href="{% url 'antena:producto_list' %}">{{ pantalla_anterior }}</a></li>
+              <li class="breadcrumb-item active">{{ titulo_seccion }}</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-default">
+              <div class="card-header">
+                <h3 class="card-title">{{ titulo_formulario }}</h3>
+              </div>
+              <div class="card-body p-0">
+                <div class="bs-stepper">
+                  <div class="bs-stepper-content mb-3">
+                    <!-- your steps content here -->
+                    <div id="logins-part" class="content mt-3 mx-3" role="tabpanel" aria-labelledby="logins-part-trigger">
+                      <form action="" method="post">
+                        {% if form.errors %}
+                          <div class="alert alert-danger alert-white rounded">
+                            <button type="button" data-dismiss="alert" aria-hidden="true" class="close msjclose">×</button>
+                            <div class="icon">
+                                <i class="fa fa-times-circle"></i>
+                            </div>
+                            <strong class="msjerror">Error!</strong> 
+                            {{ form.errors  | striptags }}
+                          </div>    
+                        {% endif %}
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <label for="descripcion">Marca *</label>
+                              {{ form.marca }}
+                            </div>
+                            <div class="col-md-4">
+                              <label for="descripcion">Modelo *</label>
+                              {{ form.modelo }}
+                            </div>
+                            <div class="col-md-4">
+                              <label for="descripcion">Producto *</label>
+                              {{ form.producto }}
+                            </div>
+                          </div> 
+                        </div>
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <label for="descripcion">Localidad *</label>
+                              {{ form.localidad }}
+                            </div>
+                            <div class="col-md-3">
+                              <label for="descripcion">Barrio *</label>
+                              {{ form.barrio }}
+                            </div>
+                            <div class="col-md-3">
+                              <label for="descripcion">Calle *</label>
+                              {{ form.calle }}
+                            </div>
+                            <div class="col-md-2">
+                              <label for="descripcion">Calle número *</label>
+                              {{ form.calle_nro }}
+                            </div>
+                          </div> 
+                        </div>
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <label for="descripcion">Latitud (ingreso con puntos)*</label>
+                              {{ form.latitud }}
+                            </div>
+                            <div class="col-md-3">
+                              <label for="descripcion">Longitud (Ingreso con puntos)*</label>
+                              {{ form.longitud }}
+                            </div>
+                            <div class="col-md-3">
+                              <label for="descripcion">Estado</label>
+                              {{ form.longitud }}
+                            </div>
+                            <div class="col-md-2 d-flex justify-content-center align-items-end mb-2">
+                              <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                {{ form.estado }}
+                               <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                               <label class="custom-control-label" for="customSwitch3">Inactivo/Activo</label>
+                              </div>
+                            </div>
+                          </div> 
+                        </div>
+                        <div class="row mt-5">
+                          <div class="col-md-6">
+                              <a href="{% url 'antena:producto_list' %}" class="btn btn-danger">{{ btn_cancelar }}</a>
+                          </div>
+                          <div class="col-md-6 d-flex justify-content-end align-items-center">
+                            <button type="submit" class="btn btn-success" id="btn-submit">{{ btn_crear }}</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                {{ leyenda }}
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock content %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}
